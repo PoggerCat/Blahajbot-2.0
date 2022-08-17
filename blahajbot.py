@@ -70,14 +70,14 @@ async def blahaj(ctx):
 @client.command()
 async def quote(ctx):
 	global comms
-	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/quote/main/alfieisberystopid").text.split("\n")))
+	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/ignore/main/uselessquotes").text.split("\n")))
 	comms += 1
 
 @client.command()
 async def compliment(ctx):
 	global comms
 	comms += 1
-	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/hehehha/main/compliments").text.split("\n")))
+	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/ignore/main/uselessquotes").text.split("\n")))
 
 
 
