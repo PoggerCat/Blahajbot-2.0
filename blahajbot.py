@@ -84,7 +84,7 @@ async def compliment(ctx):
 @client.command()
 async def help(ctx):
 	global comms
-	embed = discord.Embed(title="halp ples", colour=0x5866ef)
+	embed = discord.Embed(title="Help", colour=0x5866ef)
 
 	embed.add_field(name="blahaj", value="Sends a random photo of Blåhaj")
 	embed.add_field(name="quote", value="Makes Blåhaj pick a random useless quote from a list")
