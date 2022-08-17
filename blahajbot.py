@@ -125,7 +125,7 @@ async def cheese(ctx):
 		cheese_author = r.json()["author"]
 		cheese_license = r.json()["license"]
 		cheese_embed = discord.Embed(
-		title="Cheese (go away hoiboi)", color=discord.Color.gold())
+		title="Cheese ", color=discord.Color.gold())
 		cheese_embed.set_image(url=f"https://cheesepics.xyz/images/cheese/{cheese_id}")
 		cheese_embed.set_footer(text=f"The person that made it was: {cheese_author}, Licenced by: {cheese_license}")
 		await ctx.send(embed=cheese_embed)
