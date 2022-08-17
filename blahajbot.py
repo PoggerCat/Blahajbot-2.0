@@ -42,7 +42,7 @@ def get_comms():
 
 # Initialise variables
 comms = get_comms()
-Blahajfoto = os.path.join(os.getcwd(), "Blahajfoto")
+Blahajfoto = os.path.join(os.getcwd(), "Blahajphotos")
 
 # Initialise bot
 client = commands.Bot(command_prefix=["haj ", "Haj "])
