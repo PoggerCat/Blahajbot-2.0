@@ -77,7 +77,7 @@ async def quote(ctx):
 async def compliment(ctx):
 	global comms
 	comms += 1
-	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/ignore/main/uselessquotes").text.split("\n")))
+	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/ignore/main/Compliments").text.split("\n")))
 
 
 
@@ -89,7 +89,7 @@ async def help(ctx):
 	embed.add_field(name="blahaj", value="Sends a random photo of Blåhaj")
 	embed.add_field(name="quote", value="Makes Blåhaj pick a random useless quote from a list")
 	embed.add_field(name="uses", value="Shows how many commands have been used in total!")
-	embed.add_field(name="cheese", value="Send a random phot of cheese (I hate you hoiboi)")
+	embed.add_field(name="cheese", value="Send a random photo of cheese (I hate you hoiboi)")
 	embed.add_field(name="compliment", value="says a random compliment")
 	embed.add_field(name="invlink", value="sends the inv link")
 	await ctx.send(embed=embed)
