@@ -4,6 +4,7 @@ import random
 import signal
 import discord
 import requests
+from config import config
 from discord.ext import commands
 
 # SIGINT handler
@@ -45,7 +46,7 @@ comms = get_comms()
 Blahajfoto = os.path.join(os.getcwd(), "Blahaphotos")
 
 # Initialise bot
-client = commands.Bot(command_prefix=["haj ", "Haj "])
+client = commands.Bot(command_prefix=config["prefix"])
 client.remove_command("help")
 
 
@@ -112,7 +113,7 @@ async def uses(ctx):
 async def invlink(ctx):
 	global comms
 	comms += 1
-	await ctx.send("https://discord.com/api/oauth2/authorize?client_id=999711705296814220&permissions=51200&scope=bot")
+	await ctx.send(config["invlink"])
 
 
 @client.command()
@@ -133,4 +134,4 @@ async def cheese(ctx):
 		await ctx.send("Failed to load")
 
 # Start the bot
-client.run("")
+client.run(config["token"])
