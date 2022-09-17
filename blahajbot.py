@@ -5,7 +5,7 @@ import signal
 import discord
 import requests
 from config import config
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 # SIGINT handler
 def signal_handler(signal, frame):
@@ -57,13 +57,11 @@ async def on_ready():
 
 @client.command()
 async def blahaj(ctx):
-	global comms
 	filenames = os.listdir(Blahajfoto)
 	selected_file = os.path.join(Blahajfoto, random.choice(filenames))
 	embed = discord.Embed(title="Blåhaj!", description="Here is your Blåhaj", color=0x5866ef)
 	embed.set_image(url="attachment://blahaj.png")
 	await ctx.send(file=discord.File(selected_file, "blahaj.png"), embed=embed)
-	comms += 1
 
 
 
@@ -72,19 +70,15 @@ async def blahaj(ctx):
 async def quote(ctx):
 	global comms
 	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/ignore/main/uselessquotes").text.split("\n")))
-	comms += 1
 
 @client.command()
 async def compliment(ctx):
-	global comms
-	comms += 1
 	await ctx.send(random.choice(requests.get("https://raw.githubusercontent.com/PoggerCat/ignore/main/Compliments").text.split("\n")))
 
 
 
 @client.command()
 async def help(ctx):
-	global comms
 	embed = discord.Embed(title="Help", colour=0x5866ef)
 
 	embed.add_field(name="blahaj", value="Sends a random photo of Blåhaj")
@@ -94,7 +88,6 @@ async def help(ctx):
 	embed.add_field(name="compliment", value="says a random compliment")
 	embed.add_field(name="invlink", value="sends the inv link")
 	await ctx.send(embed=embed)
-	comms += 1
 
 
 
@@ -103,16 +96,13 @@ async def help(ctx):
 async def uses(ctx):
 	global comms
 	await ctx.send(f"{comms} commands have been used!")
-	await ctx.send("I'm in " + str(len(client.guilds)) + " servers!")
-	comms += 1
+	await ctx.send(f"I'm in {len(client.guilds)} servers!")
 
 
 
 
 @client.command()
 async def invlink(ctx):
-	global comms
-	comms += 1
 	await ctx.send(config["invlink"])
 
 
@@ -132,6 +122,17 @@ async def cheese(ctx):
 		await ctx.send(embed=cheese_embed)
 	else:
 		await ctx.send("Failed to load")
+
+@client.event
+async def on_command_completion(ctx):
+	global comms
+	comms += 1
+
+@tasks.loop(minutes=10)
+async def save_comms():
+ 	# Save the comms variable
+ 	with open("comms.txt", "w") as f:
+ 		f.write(str(comms))
 
 # Start the bot
 client.run(config["token"])
